@@ -107,14 +107,12 @@ const CartPage = () => {
         orderStatus: "New"
       };
       
-      console.log("Submitting order with data:", orderData);
       
       // Try to log to Google Sheets
       toast.info("Processing your order...");
       const sheetLogged = await logOrder(orderData);
       
       if (sheetLogged) {
-        console.log("Order logged to Google Sheet successfully");
         toast.success("Order received successfully!");
         
         // Clear the cart and reset form
@@ -127,12 +125,9 @@ const CartPage = () => {
           pincode: ''
         });
       } else {
-        // Google Sheet logging failed
-        console.error("Failed to log order to Google Sheet");
         toast.error("Unable to place order. Please try again later.");
       }
     } catch (error) {
-      console.error("Error during order submission:", error);
       toast.error("There was an issue processing your order");
     } finally {
       setIsSubmitting(false);
