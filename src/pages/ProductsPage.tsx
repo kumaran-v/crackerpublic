@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
-import WhatsAppButton from '@/components/WhatsAppButton';
 import { products, categories, getProductsByCategory } from '@/lib/data';
 import { ProductCategory, Product } from '@/lib/types';
 
@@ -138,7 +137,7 @@ const ProductsPage = () => {
                 </div>
                 
                 {/* Price Range */}
-                <div className="mb-6">
+               {/* <div className="mb-6">
                   <h3 className="font-medium mb-2">Price Range</h3>
                   <div className="px-2">
                     <Slider
@@ -154,10 +153,10 @@ const ProductsPage = () => {
                       <span>₹{priceRange[1]}</span>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 
                 {/* Brands */}
-                <div className="mb-6">
+               {/* <div className="mb-6">
                   <h3 className="font-medium mb-2">Brands</h3>
                   <div className="space-y-2">
                     {brands.map(brand => (
@@ -176,7 +175,7 @@ const ProductsPage = () => {
                       </div>
                     ))}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             
@@ -243,7 +242,6 @@ const ProductsPage = () => {
         </div>
       </main>
       
-      <WhatsAppButton />
       <Footer />
     </div>
   );

@@ -7,7 +7,7 @@ export const products: Product[] = [
     name: "Rainbow Bloomer",
     description: "Colorful flower pot that emits rainbow-colored sparks that bloom like a flower. Perfect for special occasions.",
     price: 299,
-    originalPrice: 349,
+    originalPrice: 549,
     images: [
       "https://images.unsplash.com/photo-1625470506910-3c98e984d966?q=80&w=500",
       "https://images.unsplash.com/photo-1498931299472-f7a63a5a1cfa?q=80&w=500"
@@ -53,6 +53,210 @@ export const products: Product[] = [
     brand: "SpinMaster"
   },
   {
+    id: "one-sound-cracker-1",
+    name: "2 3/4 SPARROW CRACKERS",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "one-sound-cracker",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
+    id: "one-sound-cracker-2",
+    name: "3 1/2 LAKSHMI CRACKERS",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "one-sound-cracker",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
+    id: "one-sound-cracker-3",
+    name: "4 LAKSHMI CRACKERS",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "one-sound-cracker",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
+    id: "one-sound-cracker-4",
+    name: "2 SOUND CRACKERS",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "one-sound-cracker",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
+    id: "one-sound-cracker-5",
+    name: "1000 CRACKERS",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "one-sound-cracker",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
+    id: "one-sound-cracker-6",
+    name: "2000 CRACKERS",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "one-sound-cracker",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
+    id: "one-sound-cracker-7",
+    name: "5000 CRACKERS",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "one-sound-cracker",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
+    id: "one-sound-cracker-8",
+    name: "10000 CRACKERS",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "one-sound-cracker",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
+    id: "atom-bomb-1",
+    name: "Hydro Bomb",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "atom-bomb",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
+    id: "atom-bomb-2",
+    name: "Paper Bomb 1/4 KG",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "atom-bomb",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
+    id: "atom-bomb-3",
+    name: "Paper Bomb 1/2 KG",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "atom-bomb",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
+    id: "atom-bomb-4",
+    name: "Paper Bomb 1 KG",
+    description: "one sound cracker",
+    price: 149,
+    originalPrice: 199,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500",
+      "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?q=80&w=500"
+    ],
+    category: "atom-bomb",
+    inStock: true,
+    featured: true,
+    rating: 4.5,
+    tags: ["spinning", "colorful", "ground"],
+    brand: "Cracker "
+  },
+  {
     id: "rockets-1",
     name: "Sky Screamer",
     description: "High-flying rocket with a loud whistling sound and colorful burst at peak height. Reaches up to 100 feet.",
@@ -70,7 +274,55 @@ export const products: Product[] = [
   },
   {
     id: "fancy-shot-1",
-    name: "Multi-Color Candle",
+    name: "15 Shorts Multi Colour",
+    description: "Shoots 10 consecutive multi-colored shots into the sky. Each shot creates a different pattern and color.",
+    price: 399,
+    images: [
+      "https://images.unsplash.com/photo-1560813962-ff09d8121780?q=80&w=500",
+      "https://images.unsplash.com/photo-1597177266435-ed61a33cd5a8?q=80&w=500"
+    ],
+    category: "fancy-shots",
+    inStock: true,
+    featured: true,
+    rating: 4.8,
+    tags: ["multi-shot", "colorful", "aerial"],
+    brand: "FireWorks Pro"
+  },
+  {
+    id: "fancy-shot-2",
+    name: "30 Shorts Multi Colour",
+    description: "Shoots 10 consecutive multi-colored shots into the sky. Each shot creates a different pattern and color.",
+    price: 399,
+    images: [
+      "https://images.unsplash.com/photo-1560813962-ff09d8121780?q=80&w=500",
+      "https://images.unsplash.com/photo-1597177266435-ed61a33cd5a8?q=80&w=500"
+    ],
+    category: "fancy-shots",
+    inStock: true,
+    featured: true,
+    rating: 4.8,
+    tags: ["multi-shot", "colorful", "aerial"],
+    brand: "FireWorks Pro"
+  },
+  {
+    id: "fancy-shot-3",
+    name: "60 Shots Multi Colour",
+    description: "Shoots 10 consecutive multi-colored shots into the sky. Each shot creates a different pattern and color.",
+    price: 399,
+    images: [
+      "https://images.unsplash.com/photo-1560813962-ff09d8121780?q=80&w=500",
+      "https://images.unsplash.com/photo-1597177266435-ed61a33cd5a8?q=80&w=500"
+    ],
+    category: "fancy-shots",
+    inStock: true,
+    featured: true,
+    rating: 4.8,
+    tags: ["multi-shot", "colorful", "aerial"],
+    brand: "FireWorks Pro"
+  },
+  {
+    id: "fancy-shot-4",
+    name: "120 Shots Multi Colour",
     description: "Shoots 10 consecutive multi-colored shots into the sky. Each shot creates a different pattern and color.",
     price: 399,
     images: [
@@ -103,12 +355,117 @@ export const products: Product[] = [
   },
   {
     id: "sparklers-1",
-    name: "Magic Sparklers (Pack of 10)",
+    name: "7 Cm Electric Sparklers (Pack of 10)",
     description: "Long-lasting sparklers that burn with minimal smoke. Perfect for kids and indoor celebrations.",
-    price: 99,
+    price: 10,
+    originalPrice: 20,
     images: [
-      "https://images.unsplash.com/photo-1533177243638-ec694608ef96?q=80&w=500",
-      "https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?q=80&w=500"
+       "src/image/sparklercracker.webp"
+    ],
+    category: "sparklers",
+    inStock: true,
+    rating: 4.6,
+    tags: ["smokeless", "kids", "safe"],
+    brand: "SparkJoy"
+  },
+  {
+    id: "sparklers-2",
+    name: "7 Cm Colour Sparklers  (Pack of 10)",
+    description: "Long-lasting sparklers that burn with minimal smoke. Perfect for kids and indoor celebrations.",
+    price: 10,
+    originalPrice: 20,
+    images: [
+      "src/image/sparkler_color.webp"
+    ],
+    category: "sparklers",
+    inStock: true,
+    rating: 4.6,
+    tags: ["smokeless", "kids", "safe"],
+    brand: "SparkJoy"
+  },
+  {
+    id: "sparklers-3",
+    name: "10 Cm Electric Sparklers  (Pack of 10)",
+    description: "Long-lasting sparklers that burn with minimal smoke. Perfect for kids and indoor celebrations.",
+    price: 10,
+    originalPrice: 20,
+    images: [
+      "src/image/sparkler_color.webp"
+    ],
+    category: "sparklers",
+    inStock: true,
+    rating: 4.6,
+    tags: ["smokeless", "kids", "safe"],
+    brand: "SparkJoy"
+  },
+  {
+    id: "sparklers-4",
+    name: "10 Cm Colour Sparklers  (Pack of 10)",
+    description: "Long-lasting sparklers that burn with minimal smoke. Perfect for kids and indoor celebrations.",
+    price: 10,
+    originalPrice: 20,
+    images: [
+      "src/image/sparkler_color.webp"
+    ],
+    category: "sparklers",
+    inStock: true,
+    rating: 4.6,
+    tags: ["smokeless", "kids", "safe"],
+    brand: "SparkJoy"
+  },
+  {
+    id: "sparklers-5",
+    name: "15 Cm electric Sparklers  (Pack of 10)",
+    description: "Long-lasting sparklers that burn with minimal smoke. Perfect for kids and indoor celebrations.",
+    price: 10,
+    originalPrice: 20,
+    images: [
+      "src/image/sparkler_color.webp"
+    ],
+    category: "sparklers",
+    inStock: true,
+    rating: 4.6,
+    tags: ["smokeless", "kids", "safe"],
+    brand: "SparkJoy"
+  },
+  {
+    id: "sparklers-6",
+    name: "15 Cm Colour Sparklers  (Pack of 10)",
+    description: "Long-lasting sparklers that burn with minimal smoke. Perfect for kids and indoor celebrations.",
+    price: 10,
+    originalPrice: 20,
+    images: [
+      "src/image/sparkler_color.webp"
+    ],
+    category: "sparklers",
+    inStock: true,
+    rating: 4.6,
+    tags: ["smokeless", "kids", "safe"],
+    brand: "SparkJoy"
+  },
+  {
+    id: "sparklers-7",
+    name: "30 Cm electric Sparklers  (Pack of 10)",
+    description: "Long-lasting sparklers that burn with minimal smoke. Perfect for kids and indoor celebrations.",
+    price: 10,
+    originalPrice: 20,
+    images: [
+      "src/image/sparkler_color.webp"
+    ],
+    category: "sparklers",
+    inStock: true,
+    rating: 4.6,
+    tags: ["smokeless", "kids", "safe"],
+    brand: "SparkJoy"
+  },
+  {
+    id: "sparklers-8",
+    name: "30 Cm Colour Sparklers  (Pack of 10)",
+    description: "Long-lasting sparklers that burn with minimal smoke. Perfect for kids and indoor celebrations.",
+    price: 10,
+    originalPrice: 20,
+    images: [
+      "src/image/sparkler_color.webp"
     ],
     category: "sparklers",
     inStock: true,
@@ -148,8 +505,11 @@ export const categories = [
   { value: "all", label: "All Products" },
   { value: "flower-pots", label: "Flower Pots" },
   { value: "ground-chakkars", label: "Ground Chakkars" },
-  { value: "rockets", label: "Rockets" },
-  { value: "fancy-shots", label: "Fancy Shots" },
+  { value: "one-sound-cracker", label: "One Sound Cracker" },
+  { value: "atom-bomb", label: "Atom Bomb" },
+  /*{ value: "rockets", label: "Rockets" },*/
+  { value: "fancy-shots", label: "Multi Colour Shots" },
+  { value: "fancy-novelties", label: "Fancy Novelties" },
   { value: "gift-boxes", label: "Gift Boxes" },
   { value: "sparklers", label: "Sparklers" }
 ];

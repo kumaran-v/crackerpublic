@@ -6,7 +6,6 @@ type CartAction =
   | { type: 'ADD_ITEM'; payload: { product: Product, quantity: number } }
   | { type: 'REMOVE_ITEM'; payload: { productId: string } }
   | { type: 'UPDATE_QUANTITY'; payload: { productId: string, quantity: number } }
-  | { type: 'APPLY_PROMO'; payload: { code: string } }
   | { type: 'CLEAR_CART' };
 
 interface CartContextType {
@@ -14,7 +13,6 @@ interface CartContextType {
   addToCart: (product: Product, quantity: number) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
-  applyPromoCode: (code: string) => void;
   clearCart: () => void;
   isInCart: (productId: string) => boolean;
 }
@@ -24,7 +22,6 @@ const initialState: CartState = {
   subtotal: 0,
   discount: 0,
   total: 0,
-  promoCode: undefined
 };
 
 // Get cart from localStorage if it exists
@@ -32,7 +29,11 @@ const getInitialState = (): CartState => {
   if (typeof window !== 'undefined') {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
-      return JSON.parse(savedCart);
+      try {
+        return JSON.parse(savedCart);
+      } catch {
+        return initialState;
+      }
     }
   }
   return initialState;
@@ -50,13 +51,6 @@ const calculateCartTotals = (items: CartItem[], discount = 0) => {
     discount,
     total: subtotal - discount
   };
-};
-
-// Promotion codes and their discount values (in percentage)
-const promoCodes: Record<string, number> = {
-  'FESTIVAL10': 10,
-  'DIWALI20': 20,
-  'SUMMER15': 15
 };
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
@@ -102,22 +96,6 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       return calculateCartTotals(newItems, state.discount);
     }
     
-    case 'APPLY_PROMO': {
-      const { code } = action.payload;
-      const discountPercentage = promoCodes[code];
-      
-      if (!discountPercentage) return state; // Invalid promo code
-      
-      const discount = Math.round(state.subtotal * (discountPercentage / 100));
-      
-      return {
-        ...state,
-        promoCode: code,
-        discount,
-        total: state.subtotal - discount
-      };
-    }
-    
     case 'CLEAR_CART':
       return initialState;
       
@@ -128,7 +106,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [cart, dispatch] = useReducer(cartReducer, initialState, getInitialState);
 
   // Save cart to localStorage whenever it changes
@@ -148,10 +126,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     dispatch({ type: 'UPDATE_QUANTITY', payload: { productId, quantity } });
   };
 
-  const applyPromoCode = (code: string) => {
-    dispatch({ type: 'APPLY_PROMO', payload: { code } });
-  };
-
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' });
   };
@@ -166,7 +140,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       addToCart,
       removeFromCart,
       updateQuantity,
-      applyPromoCode,
       clearCart,
       isInCart
     }}>

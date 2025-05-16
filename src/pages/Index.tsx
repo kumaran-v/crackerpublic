@@ -7,7 +7,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
-import WhatsAppButton from '@/components/WhatsAppButton';
 import { featuredProducts, categories } from '@/lib/data';
 import { ProductCategory } from '@/lib/types';
 
@@ -34,8 +33,8 @@ const Index = () => {
                 <span className="festive-gradient bg-clip-text text-transparent">Festival Celebrations</span>
               </h1>
               <p className="text-lg text-gray-600 mb-8">
-                Discover premium quality fireworks for all your special occasions.
-                From colorful flower pots to spectacular aerial shots, we've got everything to make your celebrations memorable.
+              May these fireworks burn away all our troubles, problems and sorrows, and may these light up our life
+              with happiness, joy, and we've got everything to make your celebrations memorable.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" asChild className="btn-sparkle">
@@ -52,7 +51,7 @@ const Index = () => {
             </div>
             <div className={`transition-all duration-1000 delay-300 ${showHeroAnimation ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <img 
-                src="https://images.unsplash.com/photo-1530866495561-507c9faab2ed?q=80&w=1000" 
+                src="/placeholder.svg" 
                 alt="Festival Fireworks" 
                 className="w-full h-auto rounded-lg shadow-2xl float-animation"
               />
@@ -78,9 +77,11 @@ const Index = () => {
                     <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
                       {/* Simple category icon based on name */}
                       <div className="text-2xl">
-                        {category.value === "flower-pots" ? "🌸" : 
-                          category.value === "ground-chakkars" ? "🔄" :
-                          category.value === "rockets" ? "🚀" :
+                        {category.value === "flower-pots" ? "💥" : 
+                          category.value === "ground-chakkars" ? "💫" :
+                          category.value === "one-sound-cracker" ? "✨" :
+                          category.value === "atom-bomb" ? "✨" :
+                          /*category.value === "rockets" ? "🚀" :*/
                           category.value === "fancy-shots" ? "✨" :
                           category.value === "gift-boxes" ? "🎁" : "🎇"}
                       </div>
@@ -110,81 +111,6 @@ const Index = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {featuredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      {/* Special Offer Banner */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="bg-gradient-to-r from-festival-purple to-festival-pink rounded-2xl p-8 md:p-12 text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-black opacity-20"></div>
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Special Diwali Offer</h2>
-              <p className="text-lg mb-6 max-w-2xl">
-                Get 20% off on all gift boxes and combo packs. Use promo code <span className="font-bold">DIWALI20</span> at checkout.
-              </p>
-              <Button size="lg" variant="secondary" asChild>
-                <Link to="/products?category=gift-boxes">
-                  Shop Gift Boxes
-                </Link>
-              </Button>
-            </div>
-            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full"></div>
-            <div className="absolute top-10 -right-10 w-20 h-20 bg-white/10 rounded-full"></div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Testimonials */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Rajesh Kumar",
-                text: "The quality of fireworks is exceptional. My family loved the gift box I purchased for Diwali celebrations!",
-                rating: 5
-              },
-              {
-                name: "Priya Sharma",
-                text: "Fast delivery and great packaging. The flower pots were beautiful and lasted longer than expected.",
-                rating: 4
-              },
-              {
-                name: "Amit Patel",
-                text: "Excellent customer service! They helped me choose the perfect fireworks for my daughter's birthday party.",
-                rating: 5
-              }
-            ].map((testimonial, index) => (
-              <Card key={index} className="h-full">
-                <CardContent className="p-6 flex flex-col h-full">
-                  <div className="flex mb-4">
-                    {Array(5)
-                      .fill(0)
-                      .map((_, i) => (
-                        <svg
-                          key={i}
-                          className={`w-5 h-5 ${i < testimonial.rating ? 'text-yellow-500' : 'text-gray-300'}`}
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      ))}
-                  </div>
-                  <p className="text-gray-600 mb-4 flex-grow">{testimonial.text}</p>
-                  <footer className="text-right font-medium">{testimonial.name}</footer>
-                </CardContent>
-              </Card>
             ))}
           </div>
         </div>
@@ -236,7 +162,6 @@ const Index = () => {
         </div>
       </section>
       
-      <WhatsAppButton />
       <Footer />
     </div>
   );

@@ -8,7 +8,6 @@ import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
 import { getProductById, products } from '@/lib/data';
 import { useCart } from '@/contexts/CartContext';
 
@@ -44,7 +43,7 @@ const ProductDetailPage = () => {
       });
     } else {
       // Fallback for browsers that don't support navigator.share
-      window.open(`https://wa.me/?text=Check out this amazing firework: ${product?.name} - ${window.location.href}`);
+      window.open(`mailto:?subject=Check out this amazing firework&body=Check out this amazing firework: ${product?.name} - ${window.location.href}`);
     }
   };
   
@@ -357,7 +356,6 @@ const ProductDetailPage = () => {
         </div>
       </main>
       
-      <WhatsAppButton />
       <Footer />
     </div>
   );

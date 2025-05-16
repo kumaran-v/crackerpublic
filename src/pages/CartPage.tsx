@@ -1,25 +1,49 @@
-
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Trash2, ArrowRight, Download } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Trash2, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
+import { toast } from 'sonner';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
 import { useCart } from '@/contexts/CartContext';
+import { logOrder, logPageVisit } from '@/lib/googleSheets';
+import { OrderData, PageVisitData } from '@/lib/types';
+
+// List of valid pincodes
+const VALID_PINCODES = [
+  '600001', '600017', '600020', '600040', '600011', 
+  '600004', '600042', '600045', '600116', '600041', 
+  '602001', '600054', '600053', '601204', '601102', 
+  '600072', '600056', '600052', '602024', '601201'
+];
 
 const CartPage = () => {
-  const { cart, updateQuantity, removeFromCart, applyPromoCode, clearCart } = useCart();
-  const [promoCode, setPromoCode] = useState('');
-  const [promoError, setPromoError] = useState('');
+  const { cart, updateQuantity, removeFromCart, clearCart } = useCart();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    address: ''
+    address: '',
+    pincode: ''
   });
+  const [pincodeError, setPincodeError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const location = useLocation();
+  
+  // Log page visit
+  useEffect(() => {
+    const pageVisitData: PageVisitData = {
+      timestamp: new Date().toISOString(),
+      pageUrl: window.location.href,
+      referrer: document.referrer || null
+    };
+    
+    logPageVisit(pageVisitData).catch(() => {
+      // Silent catch - we don't want to show errors for analytics
+    });
+  }, [location.pathname]);
   
   const handleQuantityChange = (productId: string, quantity: number) => {
     updateQuantity(productId, quantity);
@@ -29,64 +53,90 @@ const CartPage = () => {
     removeFromCart(productId);
   };
   
-  const handleApplyPromo = () => {
-    if (!promoCode) {
-      setPromoError('Please enter a promo code');
-      return;
-    }
-    
-    const validCodes = ['FESTIVAL10', 'DIWALI20', 'SUMMER15'];
-    if (validCodes.includes(promoCode)) {
-      applyPromoCode(promoCode);
-      setPromoError('');
-    } else {
-      setPromoError('Invalid promo code');
-    }
-  };
-  
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-  };
-  
-  const shareCartOnWhatsApp = () => {
-    const message = `Check out my fireworks cart! 🎆 \n\n` + 
-      cart.items.map(item => 
-        `${item.product.name} - ₹${item.product.price} x ${item.quantity} = ₹${item.product.price * item.quantity}`
-      ).join('\n') + 
-      `\n\nTotal: ₹${cart.total}` +
-      `\n\nCheck out FireworksFestival website to order these amazing products!`;
     
-    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
+    // Validate pincode if that's the field being changed
+    if (name === 'pincode') {
+      if (value && !VALID_PINCODES.includes(value)) {
+        setPincodeError('This pincode is not serviceable');
+      } else {
+        setPincodeError('');
+      }
+    }
   };
   
-  const downloadCartDetails = () => {
-    const cartDetails = `FireworksFestival - Shopping Cart\n\n` + 
-      cart.items.map(item => 
-        `${item.product.name} - ₹${item.product.price} x ${item.quantity} = ₹${item.product.price * item.quantity}`
-      ).join('\n') + 
-      `\n\nSubtotal: ₹${cart.subtotal}` +
-      (cart.discount > 0 ? `\nDiscount: -₹${cart.discount}` : '') +
-      `\nTotal: ₹${cart.total}` +
-      `\n\nThank you for shopping with FireworksFestival!`;
-    
-    const element = document.createElement('a');
-    const file = new Blob([cartDetails], {type: 'text/plain'});
-    element.href = URL.createObjectURL(file);
-    element.download = `fireworks-cart-${new Date().toLocaleDateString().replace(/\//g, '-')}.txt`;
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  };
-  
-  const handleQuickPurchase = (e: React.FormEvent) => {
+  const handleQuickPurchase = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // This would normally submit the order to a backend
-    // For now, we'll just simulate a successful order
+    if (cart.items.length === 0) {
+      return;
+    }
     
-    alert(`Order placed successfully!\n\nThank you ${formData.name}!\nYour order will be processed shortly.`);
-    clearCart();
+    // Validate pincode before submission
+    if (!formData.pincode) {
+      setPincodeError('Pincode is required');
+      toast.error('Please enter a valid pincode');
+      return;
+    }
+    
+    if (!VALID_PINCODES.includes(formData.pincode)) {
+      setPincodeError('This pincode is not serviceable');
+      toast.error('The entered pincode is not serviceable');
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Format order items for the spreadsheet
+      const orderItemsStr = cart.items
+        .map(item => `${item.product.name} (${item.quantity}x ₹${item.product.price})`)
+        .join(', ');
+      
+      // Prepare order data for Google Sheets (matching Python script format)
+      const orderData: OrderData = {
+        timestamp: new Date().toISOString(),
+        customerName: formData.name,
+        customerEmail: '', // Keeping this field for compatibility
+        customerPhone: formData.phone,
+        customerAddress: `${formData.address}, Pincode: ${formData.pincode}`,
+        orderItems: orderItemsStr,
+        totalAmount: cart.total,
+        orderStatus: "New"
+      };
+      
+      console.log("Submitting order with data:", orderData);
+      
+      // Try to log to Google Sheets
+      toast.info("Processing your order...");
+      const sheetLogged = await logOrder(orderData);
+      
+      if (sheetLogged) {
+        console.log("Order logged to Google Sheet successfully");
+        toast.success("Order received successfully!");
+        
+        // Clear the cart and reset form
+        clearCart();
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          address: '',
+          pincode: ''
+        });
+      } else {
+        // Google Sheet logging failed
+        console.error("Failed to log order to Google Sheet");
+        toast.error("Unable to place order. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error during order submission:", error);
+      toast.error("There was an issue processing your order");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -179,15 +229,6 @@ const CartPage = () => {
                     <Button variant="outline" onClick={() => clearCart()}>
                       Clear Cart
                     </Button>
-                    <div className="flex flex-wrap gap-4">
-                      <Button variant="outline" onClick={shareCartOnWhatsApp}>
-                        Share on WhatsApp
-                      </Button>
-                      <Button variant="outline" onClick={downloadCartDetails}>
-                        <Download className="mr-2 h-4 w-4" />
-                        Download Cart
-                      </Button>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -215,26 +256,6 @@ const CartPage = () => {
                   </div>
                   
                   <Separator className="my-4" />
-                  
-                  <div className="mb-4">
-                    <div className="flex gap-2">
-                      <Input
-                        type="text"
-                        placeholder="Promo Code"
-                        value={promoCode}
-                        onChange={(e) => setPromoCode(e.target.value)}
-                      />
-                      <Button onClick={handleApplyPromo}>Apply</Button>
-                    </div>
-                    {promoError && (
-                      <p className="text-red-500 text-sm mt-1">{promoError}</p>
-                    )}
-                    {cart.promoCode && (
-                      <p className="text-green-600 text-sm mt-1">
-                        Promo code {cart.promoCode} applied!
-                      </p>
-                    )}
-                  </div>
                 </div>
                 
                 {/* Quick Purchase Form */}
@@ -299,9 +320,44 @@ const CartPage = () => {
                         />
                       </div>
                       
-                      <Button type="submit" className="w-full btn-sparkle">
-                        Place Order
-                        <ArrowRight className="ml-2 h-4 w-4" />
+                      <div>
+                        <label htmlFor="pincode" className="block text-sm font-medium mb-1">
+                          Pincode
+                        </label>
+                        <Input
+                          id="pincode"
+                          name="pincode"
+                          value={formData.pincode}
+                          onChange={handleInputChange}
+                          required
+                        />
+                        {pincodeError && (
+                          <p className="text-festival-red text-sm mt-1">{pincodeError}</p>
+                        )}
+                        <p className="text-xs text-muted-foreground mt-1">
+                          We deliver only to select areas. Please check if your pincode is serviceable.
+                        </p>
+                      </div>
+                      
+                      <Button 
+                        type="submit" 
+                        className="w-full btn-sparkle flex items-center justify-center"
+                        disabled={isSubmitting || !!pincodeError}
+                      >
+                        {isSubmitting ? (
+                          <span className="flex items-center">
+                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Processing...
+                          </span>
+                        ) : (
+                          <>
+                            Place Order
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </>
+                        )}
                       </Button>
                     </div>
                   </form>
@@ -324,7 +380,6 @@ const CartPage = () => {
         </div>
       </main>
       
-      <WhatsAppButton />
       <Footer />
     </div>
   );
