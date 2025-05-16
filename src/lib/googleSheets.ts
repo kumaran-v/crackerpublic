@@ -25,7 +25,8 @@ export const logOrder = async (orderData: OrderData): Promise<boolean> => {
     formData.append("sheetName", ORDER_SHEET_NAME);
     formData.append("timestamp", orderData.timestamp);
     formData.append("customerName", orderData.customerName);
-    formData.append("customerEmail", orderData.customerEmail || "");
+    // Fix the email issue by setting a default value if email is empty or undefined
+    formData.append("customerEmail", orderData.customerEmail || "Not provided");
     formData.append("customerPhone", orderData.customerPhone);
     formData.append("customerAddress", orderData.customerAddress);
     formData.append("orderItems", orderData.orderItems);
@@ -65,7 +66,7 @@ export const logPageVisit = async (pageVisitData: PageVisitData): Promise<boolea
     formData.append("sheetName", PAGEVIEW_SHEET_NAME);  // Explicitly set to PageVisits sheet
     formData.append("timestamp", pageVisitData.timestamp);
     formData.append("pageUrl", pageVisitData.pageUrl);
-    formData.append("referrer", pageVisitData.referrer || "");
+    formData.append("referrer", pageVisitData.referrer || "Direct visit");
     
     // First attempt with cors mode
     try {

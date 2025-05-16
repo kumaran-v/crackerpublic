@@ -1,6 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Trash2, ArrowRight } from 'lucide-react';
+import { Trash2, ArrowRight, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
@@ -374,6 +375,19 @@ const CartPage = () => {
           )}
         </div>
       </main>
+      
+      {/* WhatsApp Floating Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <a 
+          href="https://wa.me/+919940507152" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center w-14 h-14 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-colors"
+          aria-label="Contact us on WhatsApp"
+        >
+          <MessageCircle className="w-7 h-7" />
+        </a>
+      </div>
       
       <Footer />
     </div>
