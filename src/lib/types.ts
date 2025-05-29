@@ -5,8 +5,10 @@ export type ProductCategory =
   | "ground-chakkars" 
   | "one-sound-cracker"
   | "atom-bomb"
+  | "bijili-cracker"
   | "rockets" 
   | "fancy-shots" 
+  | "fancy-aerial-shots"
   | "gift-boxes" 
   | "sparklers" 
   | "all";

@@ -51,7 +51,7 @@ const Index = () => {
             </div>
             <div className={`transition-all duration-1000 delay-300 ${showHeroAnimation ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <img 
-                src="/placeholder.svg" 
+                src="/image/groundchakar.png" 
                 alt="Festival Fireworks" 
                 className="w-full h-auto rounded-lg shadow-2xl float-animation"
               />
@@ -77,13 +77,16 @@ const Index = () => {
                     <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
                       {/* Simple category icon based on name */}
                       <div className="text-2xl">
-                        {category.value === "flower-pots" ? "💥" : 
+                        {category.value === "flower-pots" ? "✨" : 
                           category.value === "ground-chakkars" ? "💫" :
-                          category.value === "one-sound-cracker" ? "✨" :
-                          category.value === "atom-bomb" ? "✨" :
-                          /*category.value === "rockets" ? "🚀" :*/
-                          category.value === "fancy-shots" ? "✨" :
-                          category.value === "gift-boxes" ? "🎁" : "🎇"}
+                          category.value === "one-sound-cracker" ? "🧨" :
+                          category.value === "atom-bomb" ? "💥" :
+                          category.value === "rockets" ? "🚀" :
+                          category.value === "bijili-cracker" ? "🧨" :
+                          category.value === "fancy-aerial-shots" ? "🎆" :
+                          category.value === "fancy-novelties" ? "🎆" :
+                          category.value === "fancy-shots" ? "🎆" :
+                          category.value === "gift-boxes" ? "🎁" : ""}
                       </div>
                     </div>
                     <h3 className="font-medium">{category.label}</h3>

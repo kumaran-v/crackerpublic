@@ -249,22 +249,6 @@ const ProductDetailPage = () => {
                     <ShoppingCart className="mr-2 h-5 w-5" />
                     {isInCart(product.id) ? 'Add More to Cart' : 'Add to Cart'}
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    onClick={handleShare}
-                  >
-                    <Share className="mr-2 h-5 w-5" />
-                    Share
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    onClick={handleDownload}
-                  >
-                    <Download className="mr-2 h-5 w-5" />
-                    Download
-                  </Button>
                 </div>
               </div>
             </div>
@@ -276,7 +260,7 @@ const ProductDetailPage = () => {
               <TabsList className="mb-4">
                 <TabsTrigger value="details">Details</TabsTrigger>
                 <TabsTrigger value="safety">Safety Instructions</TabsTrigger>
-                <TabsTrigger value="shipping">Shipping Information</TabsTrigger>
+               {/* <TabsTrigger value="shipping">Shipping Information</TabsTrigger>*/}
               </TabsList>
               <TabsContent value="details" className="bg-white p-6 rounded-lg shadow">
                 <h3 className="text-lg font-medium mb-4">Product Details</h3>
