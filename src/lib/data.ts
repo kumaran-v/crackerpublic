@@ -126,7 +126,7 @@ export const products: Product[] = [
     tags: ["spinning", "colorful", "ground"]
   },
   {
-    id: "one-sound-cracker-5",
+    id: "walas-1",
     name: "1000 CRACKERS",
     description: "one sound cracker",
     price: 300,
@@ -134,13 +134,13 @@ export const products: Product[] = [
     images: [
       "src/image/onesound1000.png"
     ],
-    category: "one-sound-cracker",
+    category: "walas",
     inStock: true,
   
     tags: ["one sound", "ground"]
   },
   {
-    id: "one-sound-cracker-6",
+    id: "walas-2",
     name: "2000 CRACKERS",
     description: "one sound cracker",
     price: 650,
@@ -148,35 +148,35 @@ export const products: Product[] = [
     images: [
       "src/image/onesound1000.png"
     ],
-    category: "one-sound-cracker",
+    category: "walas",
     inStock: true,
   
     tags: ["one sound", "ground"]
   },
   {
-    id: "one-sound-cracker-7",
+    id: "walas-3",
     name: "5000 CRACKERS",
     description: "one sound cracker",
     price: 1100,
-    originalPrice: 2000,
+    originalPrice: 2400,
     images: [
       "src/image/onesound1000.png",
     ],
-    category: "one-sound-cracker",
+    category: "walas",
     inStock: true,
   
     tags: ["one sound", "ground"]
   },
   {
-    id: "one-sound-cracker-8",
+    id: "walas-4",
     name: "10000 CRACKERS",
     description: "one sound cracker",
-    price: 1999,
-    originalPrice: 4000,
+    price: 2400,
+    originalPrice: 5000,
     images: [
       "src/image/onesound1000.png",
     ],
-    category: "one-sound-cracker",
+    category: "walas",
     inStock: true,
   
     tags: ["one sound", "ground"]
@@ -499,6 +499,19 @@ export const products: Product[] = [
     inStock: true,
     tags: ["smokeless", "kids", "safe"]
   },*/
+  {
+    id: "fancy-novelties-1",
+    name: "Colour Smoke",
+    description: "Colour Smoke with 5 different colour",
+    price: 150,
+    originalPrice: 320,
+    images: [
+      "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?q=80&w=500"
+    ],
+    category: "fancy-novelties",
+    inStock: true,
+    tags: ["colorful", "Smoke"] 
+  },
 ];
 
 export const featuredProducts = products.filter(product => product.featured);
@@ -517,12 +530,14 @@ export const categories = [
   { value: "flower-pots", label: "Flower Pots" },
   { value: "ground-chakkars", label: "Ground Chakkars" },
   { value: "one-sound-cracker", label: "One Sound Cracker" },
+  { value: "walas", label: "Walas" },
   { value: "atom-bomb", label: "Atom Bomb" },
   { value: "bijili-cracker", label: "Bijili Cracker" },
   { value: "rockets", label: "Rockets" },
   { value: "fancy-shots", label: "Multi Colour Shots" },
   { value: "fancy-aerial-shots", label: "Fancy Aerial Shots" },
   { value: "fancy-novelties", label: "Fancy Novelties" },
+  { value: "new-arrival", label: "New Arrival" }
   /*{ value: "gift-boxes", label: "Gift Boxes" },*/
   /*{ value: "sparklers", label: "Sparklers" }*/
 ];

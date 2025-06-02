@@ -16,7 +16,7 @@ const ProductsPage = () => {
   const categoryParam = searchParams.get('category') as ProductCategory || 'all';
   
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory>(categoryParam);
-  const [priceRange, setPriceRange] = useState([0, 2000]);
+  const [priceRange, setPriceRange] = useState([0, 10000]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
